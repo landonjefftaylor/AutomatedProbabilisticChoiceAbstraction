@@ -61,8 +61,8 @@ other_vars = all_vars
 final_vals_map = dict()
 
 cannot_remove_set = set()
-for target in target_locs:
-    
+for i, target in enumerate(target_locs):
+    print(f"{i} of {len(target_locs)}")
     # TODO: I wrote this code to find dependancies. I think in the future we will need to use
     # it to better determine which variables can actually be removed. For now it isn't used the way
     # I have currently written the code.
@@ -76,14 +76,13 @@ for target in target_locs:
     for var in other_vars:
         var_values[var] = var
 
-    # Create the object to keep track of the variable states
-    var_state = VariableState(var_values, 1, None)
 
     # Final_vals is a list of all the possible values (a distribution) the variables
     # could be at this location, with their associated probability
     location_value_map = dict()
-    final_vals = evaluate_possibilities(target, back_edges, var_values, set(), initial_state, target, location_value_map) 
-
+    #print("Evaluating possibilities")
+    final_vals = evaluate_possibilities(target, back_edges, VariableState(var_values), set(), initial_state, target, location_value_map) 
+    print(final_vals)
     ## Any variables that we can't fully resolve (for any of the possiblities)
     ## can't be removed from the model as part of the abstraction
 
