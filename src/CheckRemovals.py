@@ -28,7 +28,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
         return [incoming_state]
     else:
         new_visited = set(visited)
-        new_visited.add(location)
+        new_visited.add(location)        # TODO Landon: check if just appending will work
 
     if location in back_edges:
         final_vals = list()
@@ -39,7 +39,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
 
             # TODO: For now we skip edges that go back to the initial state as they tend
             # to be duplicates of other existing edges. 
-            if dest == initial_state:
+            if dest == initial_state: #Landon initial_state should be initial_location
                 continue
             
             # Currently edges back to the target location are skipped because these are the 
@@ -48,7 +48,7 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 final_vals.extend([incoming_state])
                 ## TODO: Made the assumption to skip other edges here, this only holds 
                 # if they all go back to the target location instead of just one edge doing it.
-                break
+                break #Landon: without the assumption, it should be a continue statement
 
             if dest.name in location_value_map:
                 backwards_vals = location_value_map[dest.name]
@@ -58,6 +58,9 @@ def evaluate_possibilities(location, back_edges, incoming_state, visited, initia
                 # guards that should be considered true
                 backwards_vals = evaluate_possibilities(dest, back_edges, incoming_state, new_visited, initial_state, target_location, location_value_map)
                 location_value_map[dest.name] = backwards_vals
+                print(dest.name)
+                print(location_value_map[dest.name])
+                input()
                 #print(backwards_vals)
                 print(f"{len(location_value_map)}/77 locations solved")
                 #if len(location_value_map) > 42:

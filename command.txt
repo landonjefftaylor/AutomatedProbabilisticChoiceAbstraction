@@ -1,0 +1,4 @@
+python src/convert.py models/predicateAbstract.jani models/predicateAbstract_converted.jani
+
+
+python src/convert.py models/toy.jani models/toy_converted.jani

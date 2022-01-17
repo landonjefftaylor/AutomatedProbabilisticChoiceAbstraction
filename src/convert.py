@@ -142,7 +142,7 @@ syncs = '{"synchronise": [ "tick" ],"result": "tick"}'
 new_jani_string = new_jani_string.replace('"syncs": []', f'"syncs": [ {syncs} ]')
 
 # Export the jani to a file
-with open(new_file, 'w') as new_file:
+with open(new_file, 'w', encoding="utf-8") as new_file:
     new_file.write(new_jani_string)
 
 
